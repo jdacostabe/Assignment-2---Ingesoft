@@ -1,36 +1,76 @@
-class Calculadora():
+#El siguiente ejemplo evidencia un buen uso del principio Hollywood 
 
-  def calcular(self, lista):
-    if sum(lista)>0:
-      self.case_1()
-    elif sum(lista)==0:
-      self.case_2()
+#La cuenta de un usuario en un banco tiene una serie de transacciones, estas pueden
+#llevar a 3 estados que son deuda, neto y ganancia. El Banco X, posee un algoritmo 
+#para calcular el estado de la cuenta. Cada surcusal del banco controla a su manera los 
+#estados de la cuenta. 
+
+#Inicialmente en casos de error el algoritmo del banco arrojaba una excepcion para 
+#que la surcusal la controlara a su manera. 
+#Pero con el uso del principio de Hollywood, todo es muy claro, existe un algoritmo base, 
+#que necesita 3 funciones que se ejecutaran en cada uno de los estados, estas son definidas
+#por la surcusal.
+
+
+#Algotimo base del banco
+class Algoritmo_Banco():
+  
+  #Funcion que permite calcular el estado de la transaccion
+  def calcular_estado(self, transacciones):
+
+    #Estado de ganacia realiza lo que la sucursal indique
+    if sum(transacciones)>0: 
+      self.estado_ganacia()
+
+    #Estado neto realiza lo que la sucursal indique
+    elif sum(transacciones)==0:
+      self.estado_neto()
+
+    #Estado de deuda realiza lo que la sucursal indique
     else:
-      self.case_3()
+      self.estado_deuda()
 
-  def case_1(self):
+  #Procesamiento para estado de ganacia
+  def estado_ganacia(self):
     pass
 
-  def case_2(self):
+  #Procesamiento para estado neto
+  def estado_neto(self):
     pass
 
-  def case_3(self):
+  #Procesamiento para estado de perdida
+  def estado_deuda(self):
     pass
 
 
 
+#Definicion de una sucursal
+class Algoritmo_Sucursal_01(Algoritmo_Banco):
 
-class Calculadora_01(Calculadora):
-  def case_1(self):
-      print("Gano Plata Perro")
+  #Procesamiento para estado de ganacia
+  def estado_ganacia(self):
+      print("El saldo de tu cuenta es positivo")
+      print("Tus ganacias seran consignadas en una cuenta de ahorros")
 
-  def case_2(self):
-      print("No hubiera hecho nada")
+  #Procesamiento para estado neto
+  def estado_neto(self):
+      print("Tu saldo es 0, gracias por usar nuestros servicios")
+      
+  #Procesamiento para estado de perdida
+  def estado_deuda(self):
+      print("El sado de tu cuenta es negativo")
+      print("Debes solicitar un credito a continuacion se te indica como")
 
-  def case_3(self):
-      print("Buena :v Pelotudo")
 
 
 
-a = Calculadora_01()
-a.calcular([41,2,3])
+
+
+#Se define una cuenta corresponete a una sucursal dada
+cuenta_01 = Algoritmo_Sucursal_01()
+
+#El flujo de transacciones
+transacciones = [12000, -23000, -32000, 70000]
+
+#El proceso de calular el estado
+cuenta_01.calcular_estado(transacciones)
