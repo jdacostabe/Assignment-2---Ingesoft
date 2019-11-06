@@ -1,72 +1,81 @@
-class Algorithm():
 
-  def template_method(self):
-      """Skeleton of operations to perform. DON'T override me.
+# Se declara la clase principal que tendrá las funciones iniciales 
+# que adquirirán, o modificarán otras clases
 
-      The Template Method defines a skeleton of an algorithm in an operation,
-      and defers some steps to subclasses.
-      """
-      self.__do_absolutely_this()
-      self.do_step_1()
-      self.do_step_2()
-      self.do_something()
+class Algoritmo():
 
-  def __do_absolutely_this(self):
-      """Protected operation. DON'T override me."""
-      this_method_name = sys._getframe().f_code.co_name
-      print('{}.{}'.format(self.__class__.__name__, this_method_name))
+  # Se declara una función que hará uso de las demás funciones
+  def plantilla(self):
+      # Se definen los métodos que se ejecutarán al
+      # hacer uso de esta función
+      self.paso_1()
+      self.paso_2()
+      self.paso_3()
 
-  def do_step_1(self):
-      """Primitive operation. You HAVE TO override me, I'm a placeholder."""
+  # Se inicializan las tres funciones que llama la función plantilla
+  # con sus respectivas acciones según sea el caso
+  def paso_1(self):
+      print('Se encuentra en la primera definición de la función paso 1')
       pass
 
-  def do_step_2(self):
-      """Primitive operation. You HAVE TO override me, I'm a placeholder."""
+  def paso_2(self):
+      print('Se encuentra en la primera definición de la función paso 2')
       pass
 
-  def do_something(self):
-      """Hook. You CAN override me, I'm NOT a placeholder."""
-      print('do something')
+  def paso_3(self):
+      print('Se encuentra en la primera definición de la función paso 3')
 
 
+# Se declaran las otras clases que adquieren y/o sobreescriben las funciones
+# de la clase Algoritmo. Todas aquellas funciones que no se sobreescriban
+# se mantienen igual para la clase.
 
 
+# La clase AlgoritmoA modifica la función paso_1() y paso_2(), 
+# mientras que la clase paso_3() se mantiene igual
+class AlgoritmoA(Algoritmo):
+
+  def paso_1(self):
+      print('Se sobreescribió la funcion paso 1 inicial en el Algoritmo A')
+
+  def paso_2(self):
+      print('Se sobreescribió la funcion paso 2 inicial en el Algoritmo A')
 
 
+# La clase AlgoritmoB modifica la función paso_1() y paso_3(), 
+# mientras que la clase paso_2() se mantiene igual
+class AlgoritmoB(Algoritmo):
 
-class AlgorithmA(Algorithm):
+  def paso_1(self):
+      print('Se sobreescribió la funcion paso 1 inicial en el Algoritmo B')
 
-  def do_step_1(self):
-      print('do step 1 for Algorithm A')
-
-  def do_step_2(self):
-      print('do step 2 for Algorithm A')
-
-
-
+  def paso_3(self):
+      pass
 
 
-class AlgorithmB(Algorithm):
+# Finalmente, la clase AlgoritmoC modifica la función paso_3(),
+# mientras que las demás funciones se mantienen igual
+class AlgoritmoC(Algoritmo):
 
-  def do_step_1(self):
-      print('do step 1 for Algorithm B')
-
-  def do_step_2(self):
-      print('do step 2 for Algorithm B')
-
-  def do_something(self):
+  def paso_3(self):
+      print('Se sobreescribió la funcion paso 3 inicial en el Algoritmo C')
 
 
+# Se imprimen los resultados de cada una de las funciones para cada clase
 
+print ('Algoritmo A: \n')
+a = AlgoritmoA()
+a.plantilla()
 
+print ('\n\nAlgoritmo B:\n')
+b = AlgoritmoB()
+b.plantilla()
 
+print ('\n\nAlgoritmo C:\n')
+c = AlgoritmoC()
+c.plantilla()
 
-
-
-print('Algorithm A')
-a = AlgorithmA()
-a.template_method()
-
-print('\nAlgorithm B')
-b = AlgorithmB()
-b.template_method()
+# Esto nos permite cambiar las funciones que utilizará cada clase según
+# se necesite, pues se puede dar el caso en que una clase necesite una
+# función tal cual como se encuentra en la clase principal, pero la misma 
+# clase necesita cambiar otra función para cumplir su objetivo.
