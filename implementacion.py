@@ -1,81 +1,63 @@
-
 # Se declara la clase principal que tendrá las funciones iniciales 
-# que adquirirán, o modificarán otras clases
+# que heredarán las demás clases
 
-class Algoritmo():
-
-  # Se declara una función que hará uso de las demás funciones
-  def plantilla(self):
-      # Se definen los métodos que se ejecutarán al
-      # hacer uso de esta función
-      self.paso_1()
-      self.paso_2()
-      self.paso_3()
-
-  # Se inicializan las tres funciones que llama la función plantilla
-  # con sus respectivas acciones según sea el caso
+class Algoritmo():    
+  # Se inicializan las funciones que tendrán las clases
+  # que hereden algoritmo
   def paso_1(self):
-      print('Se encuentra en la primera definición de la función paso 1')
       pass
 
   def paso_2(self):
-      print('Se encuentra en la primera definición de la función paso 2')
       pass
 
-  def paso_3(self):
-      print('Se encuentra en la primera definición de la función paso 3')
 
 
-# Se declaran las otras clases que adquieren y/o sobreescriben las funciones
-# de la clase Algoritmo. Todas aquellas funciones que no se sobreescriban
-# se mantienen igual para la clase.
 
+# Se declaran las otras clases que herendan los métodos
+# de la clase Algoritmo.
 
-# La clase AlgoritmoA modifica la función paso_1() y paso_2(), 
-# mientras que la clase paso_3() se mantiene igual
 class AlgoritmoA(Algoritmo):
-
   def paso_1(self):
-      print('Se sobreescribió la funcion paso 1 inicial en el Algoritmo A')
+      print('Este es el paso 1 del algoritmo A')
 
   def paso_2(self):
-      print('Se sobreescribió la funcion paso 2 inicial en el Algoritmo A')
+      print('Este es el paso 2 del algoritmo A')
 
 
-# La clase AlgoritmoB modifica la función paso_1() y paso_3(), 
-# mientras que la clase paso_2() se mantiene igual
 class AlgoritmoB(Algoritmo):
-
   def paso_1(self):
-      print('Se sobreescribió la funcion paso 1 inicial en el Algoritmo B')
+      print('Este es el paso 1 del algoritmo B')
 
-  def paso_3(self):
-      pass
-
-
-# Finalmente, la clase AlgoritmoC modifica la función paso_3(),
-# mientras que las demás funciones se mantienen igual
-class AlgoritmoC(Algoritmo):
-
-  def paso_3(self):
-      print('Se sobreescribió la funcion paso 3 inicial en el Algoritmo C')
+  def paso_2(self):
+      print('Este es el paso 2 del algoritmo B')
 
 
-# Se imprimen los resultados de cada una de las funciones para cada clase
 
-print ('Algoritmo A: \n')
-a = AlgoritmoA()
-a.plantilla()
+
+# Se declara otra clase que llama las funciones de la
+# clase que se le indique en el constructor
+class selector():
+  def _init_(self,nueva_clase):
+    self.clase = nueva_clase
+
+  def pasos(self):
+    self.clase.paso_1()
+    self.clase.paso_2()
+
+
+# Se crea un objeto de cada una de las clases AlgoritmoA y AlgoritmoB
+# dentro de la clase selector, pasándole como parámetro al constructor de
+# esta última la clase a crear. Según la clase que se indica, las funciones 
+# paso_1 y paso_2 son diferentes, por lo tanto la función pasos también lo es. 
+
+print ('Algoritmo A:\n')
+a = selector(AlgoritmoA())
+a.pasos()
 
 print ('\n\nAlgoritmo B:\n')
-b = AlgoritmoB()
-b.plantilla()
+b = selector(AlgoritmoB())
+b.pasos()
 
-print ('\n\nAlgoritmo C:\n')
-c = AlgoritmoC()
-c.plantilla()
-
-# Esto nos permite cambiar las funciones que utilizará cada clase según
-# se necesite, pues se puede dar el caso en que una clase necesite una
-# función tal cual como se encuentra en la clase principal, pero la misma 
-# clase necesita cambiar otra función para cumplir su objetivo.
+# De esta forma, se puede cambiar el resultado de la función pasos, según la
+# clase que se indica en el construtor de la clase selector, la única restricción
+# es que la clase que se indique, herede los métodos de la clase Algoritmo.

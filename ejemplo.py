@@ -5,17 +5,17 @@
 # para calcular el estado de la cuenta. Cada surcusal del banco controla a su manera los 
 # estados de la cuenta. 
 
-# Inicialmente en casos de error el algoritmo del banco arrojaba una excepción para 
-# que la surcusal la controlara a su manera. 
-# Pero con el uso del principio de Hollywood, todo es muy claro, existe un algoritmo base, 
-# que necesita 3 funciones que se ejecutarán en cada uno de los estados, estas son definidas
-# por la surcusal.
+#Inicialmente en casos de error el algoritmo del banco arrojaba una excepcion para que
+#la sucursal la controlara a su manera. 
+#Pero con el uso del principio de Hollywood, todo es muy claro, existe un algoritmo base, 
+#que necesita 3 funciones que se ejecutaran en cada uno de los estados, estas son definidas
+#por la sucursal.
 
 
 # Algoritmo base del banco
 class Algoritmo_Banco():
   
-  #F unción que permite calcular el estado de la transaccion
+  #Función que permite calcular el estado de la transaccion
   def calcular_estado(self, transacciones):
 
     # Estado de ganacia realiza lo que la sucursal indique
@@ -60,9 +60,6 @@ class Algoritmo_Sucursal_01(Algoritmo_Banco):
   def estado_deuda(self):
       print("El saldo de tu cuenta es negativo")
       print("Debes solicitar un crédito, a continuación se te indica como")
-
-
-
 
 
 
