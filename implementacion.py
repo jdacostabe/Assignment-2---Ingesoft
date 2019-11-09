@@ -46,7 +46,7 @@ class selector():
 
 
 # Se crea un objeto de cada una de las clases AlgoritmoA y AlgoritmoB
-# dentro de la clase selector, pasándole como parámetro al constructor de
+# dentro de la clase selector, enviando como parámetro al constructor de
 # esta última la clase a crear. Según la clase que se indica, las funciones 
 # paso_1 y paso_2 son diferentes, por lo tanto la función pasos también lo es. 
 

@@ -15,7 +15,7 @@
 #Algotimo base del banco
 class Algoritmo_Banco():
   
-  #Función que permite calcular el estado de la transaccion
+  #Función que permite calcular el estado de la transacción
   def calcular_estado(self, transacciones):
 
     #Estado de ganacia realiza lo que la sucursal indique
@@ -30,7 +30,7 @@ class Algoritmo_Banco():
     else:
       self.estado_deuda()
 
-  #Procesamiento para estado de ganacia
+  #Procesamiento para estado de ganancia
   def estado_ganacia(self):
     pass
 
@@ -44,7 +44,7 @@ class Algoritmo_Banco():
 
 
 
-#Definicion de una sucursal
+#Definición de una sucursal
 class Algoritmo_Sucursal_01(Algoritmo_Banco):
 
   #Procesamiento para estado de ganacia
