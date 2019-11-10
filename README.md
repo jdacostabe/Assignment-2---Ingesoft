@@ -1,5 +1,8 @@
 # Assignment 2 - Software Engineering II
-
+### Integrantes
+* **Julian David Acosta Bello**
+* **Camilo Andres Gil Ballen**
+* **Juan Diego Medina Naranjo**
 ## Patrón: Hollywood principle
 
 #### Breve descripción del patrón:
